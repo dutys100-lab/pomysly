@@ -23,7 +23,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .av-g{background:var(--blue-bg);color:var(--blue-text)}
 .setup{background:#fffbea;border:1px solid #f5d87a;border-radius:var(--rl);padding:1.25rem 1.5rem;margin-bottom:1.5rem}
 .setup h3{font-size:15px;font-weight:600;margin-bottom:.75rem}
-.setup p{font-size:13px;color:var(--text2);margin-bottom:.5rem;line-height:1.6}
 .setup input{width:100%;border:1px solid var(--border2);border-radius:var(--r);padding:8px 12px;font-size:13px;margin:4px 0 8px;font-family:monospace}
 .setup button{background:#1a1a18;color:#fff;border:none;border-radius:var(--r);padding:8px 18px;font-size:13px;cursor:pointer}
 .setup-steps{font-size:12px;color:var(--text2);margin-top:.75rem;line-height:2}
@@ -58,8 +57,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .who-btn{padding:6px 15px;border-radius:20px;border:1px solid var(--border2);background:none;font-family:inherit;font-size:13px;cursor:pointer;color:var(--text2);transition:all .15s}
 .who-btn.sel-m{background:var(--pink-bg);color:var(--pink-text);border-color:var(--pink-border);font-weight:600}
 .who-btn.sel-g{background:var(--blue-bg);color:var(--blue-text);border-color:var(--blue-border);font-weight:600}
-.btn-save{background:var(--text);color:#fff;border:none;border-radius:var(--r);padding:9px 22px;font-size:14px;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:6px;transition:opacity .15s}
-.btn-save:hover{opacity:.82}
+.btn-primary{background:var(--text);color:#fff;border:none;border-radius:var(--r);padding:9px 22px;font-size:14px;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:6px;transition:opacity .15s}
+.btn-primary:hover{opacity:.82}
 .cards{display:flex;flex-direction:column;gap:10px}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:1rem 1.25rem;transition:border-color .15s}
 .card:hover{border-color:var(--border2)}
@@ -86,12 +85,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .btn-det{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:var(--r);border:1px solid var(--blue-border);background:var(--blue-bg);color:var(--blue-text);font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;transition:opacity .15s}
 .btn-det:hover{opacity:.75}
 .btn-det.has{background:var(--green-bg);color:var(--green-text);border-color:#a0c97a}
+
+/* EDIT PANEL */
+.edit-panel{margin-top:14px;border-top:1px solid var(--border);padding-top:14px;display:none}
+.edit-panel.open{display:block}
+.edit-panel-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:12px}
+.edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.edit-fg{display:flex;flex-direction:column;gap:4px}
+.edit-fg.s2{grid-column:1/-1}
+.edit-fg label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text2)}
+.edit-fg input,.edit-fg textarea,.edit-fg select{border:1px solid var(--border2);border-radius:var(--r);padding:8px 11px;font-size:13px;font-family:inherit;background:var(--bg);color:var(--text);resize:vertical;width:100%}
+.edit-fg input:focus,.edit-fg textarea:focus,.edit-fg select:focus{outline:none;border-color:#888;background:var(--surface)}
+.edit-fg textarea{min-height:80px}
+.edit-fg textarea.big{min-height:140px;line-height:1.8}
+.edit-btns{display:flex;gap:8px;margin-top:10px}
+.ebtn{padding:7px 16px;border-radius:var(--r);font-family:inherit;font-size:13px;cursor:pointer;transition:all .15s}
+.ebtn-save{border:none;background:var(--text);color:#fff}
+.ebtn-save:hover{opacity:.8}
+.ebtn-cancel{border:1px solid var(--border2);background:none;color:var(--text2)}
+.ebtn-cancel:hover{background:var(--surface2)}
+
+/* DETAILS PANEL */
 .det-panel{margin-top:14px;border-top:1px solid var(--border);padding-top:14px;display:none}
 .det-panel.open{display:block}
 .det-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:10px}
 .det-view{font-size:13px;color:var(--text2);line-height:1.8;white-space:pre-wrap;background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:14px;min-height:60px}
 .det-view.ph{color:var(--text3);font-style:italic}
-.det-edit{width:100%;border:1px solid var(--border2);border-radius:var(--r);padding:14px;font-size:13px;font-family:inherit;background:var(--surface);color:var(--text);resize:vertical;min-height:200px;line-height:1.8;display:none}
+.det-edit{width:100%;border:1px solid var(--border2);border-radius:var(--r);padding:14px;font-size:13px;font-family:inherit;background:var(--surface);color:var(--text);resize:vertical;min-height:180px;line-height:1.8;display:none}
 .det-edit:focus{outline:none;border-color:#888}
 .det-btns{display:flex;gap:8px;margin-top:10px}
 .dbtn{padding:7px 15px;border-radius:var(--r);font-family:inherit;font-size:13px;cursor:pointer;transition:all .15s}
@@ -100,6 +120,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .dbtn-s{border:none;background:var(--text);color:#fff;display:none}
 .dbtn-s:hover{opacity:.8}
 .dbtn-c{border:1px solid var(--border2);background:none;color:var(--text2);display:none}
+
+/* COMMENTS */
 .comments{margin-top:12px;padding-top:12px;border-top:1px solid var(--border);display:none}
 .comments.open{display:block}
 .comment-item{font-size:12px;color:var(--text2);padding:4px 0;display:flex;gap:8px;line-height:1.5}
@@ -111,7 +133,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .empty{text-align:center;padding:3rem 1rem;color:var(--text3);font-size:14px}
 .status-bar{background:var(--green-bg);color:var(--green-text);border:1px solid #a0c97a;border-radius:var(--r);padding:8px 14px;font-size:13px;margin-bottom:1rem;display:none}
 .status-bar.err{background:var(--red-bg);color:var(--red-text);border-color:#e8a090}
-@media(max-width:500px){.form-grid{grid-template-columns:1fr}.fg.s2{grid-column:1}.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:1/-1}}
+@media(max-width:500px){.form-grid,.edit-grid{grid-template-columns:1fr}.fg.s2,.edit-fg.s2{grid-column:1}.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -119,7 +141,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <div class="setup" id="setupBanner">
   <h3>⚙️ Jeden raz: podaj dane Firebase</h3>
-  <p>Wklej tutaj dane z Firebase żeby włączyć synchronizację z Grzesiem.</p>
   <label style="font-size:12px;font-weight:600;color:#5c5b56">Database URL:</label>
   <input type="text" id="dbUrl" placeholder="https://twoja-nazwa-default-rtdb.europe-west1.firebasedatabase.app"/>
   <label style="font-size:12px;font-weight:600;color:#5c5b56">API Key:</label>
@@ -196,7 +217,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <button class="who-btn sel-m" id="btnMal" onclick="setAuthor('Małgosia')">Małgosia</button>
         <button class="who-btn" id="btnGrz" onclick="setAuthor('Grześ')">Grześ</button>
       </div>
-      <button class="btn-save" onclick="addIdea()">
+      <button class="btn-primary" onclick="addIdea()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
         Dodaj pomysł
       </button>
@@ -221,8 +242,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <script>
 var db=null,ideas=[],author='Małgosia',fAll='all',fImp='all';
-
-// Load saved config
 var cfg=null;
 try{cfg=JSON.parse(localStorage.getItem('fb-cfg')||'null')}catch(e){}
 if(cfg)initFB(cfg);
@@ -248,12 +267,8 @@ function initFB(c){
       snap.forEach(function(child){ideas.push(Object.assign({id:child.key},child.val()));});
       ideas.sort(function(a,b){return(b.ts||0)-(a.ts||0);});
       render();
-    },function(err){
-      showStatus('Błąd połączenia: '+err.message,true);
-    });
-  }catch(e){
-    showStatus('Błąd: '+e.message,true);
-  }
+    },function(err){showStatus('Błąd połączenia: '+err.message,true);});
+  }catch(e){showStatus('Błąd: '+e.message,true);}
 }
 
 function showStatus(msg,isErr){
@@ -298,23 +313,17 @@ function addIdea(){
   var title=document.getElementById('fTitle').value.trim();
   if(!title){toast('Wpisz tytuł pomysłu!');return;}
   var idea={
-    title:title,
-    cat:document.getElementById('fCat').value,
+    title:title,cat:document.getElementById('fCat').value,
     priority:document.getElementById('fPri').value,
     desc:document.getElementById('fDesc').value.trim(),
     details:document.getElementById('fDet').value.trim(),
     value:document.getElementById('fVal').value.trim(),
-    author:author,
-    date:new Date().toLocaleDateString('pl-PL'),
-    ts:Date.now(),
-    likes:0,
-    comments:[]
+    author:author,date:new Date().toLocaleDateString('pl-PL'),
+    ts:Date.now(),likes:0,comments:[]
   };
-  var ref=db.ref('ideas').push();
-  ref.set(idea,function(err){
-    if(err){
-      showStatus('Błąd zapisu: '+err.message,true);
-    }else{
+  db.ref('ideas').push().set(idea,function(err){
+    if(err){showStatus('Błąd zapisu: '+err.message,true);}
+    else{
       ['fTitle','fDesc','fDet','fVal'].forEach(function(id){document.getElementById(id).value='';});
       toast('Pomysł dodany! Grześ zobaczy go od razu.');
       switchTab('all');
@@ -325,7 +334,7 @@ function addIdea(){
 function deleteIdea(id){
   if(!db||!confirm('Usunąć ten pomysł?'))return;
   db.ref('ideas/'+id).remove(function(err){
-    if(err)showStatus('Błąd usuwania: '+err.message,true);
+    if(err)showStatus('Błąd: '+err.message,true);
     else toast('Usunięto');
   });
 }
@@ -349,6 +358,7 @@ function addComment(id,inputEl){
 function toggleComments(id){var el=document.getElementById('cm-'+id);if(el)el.classList.toggle('open');}
 function toggleDet(id){var el=document.getElementById('det-'+id);if(el)el.classList.toggle('open');}
 
+// DETAILS edit
 function editDet(id){
   var idea=ideas.find(function(i){return i.id===id;});if(!idea)return;
   document.getElementById('dv-'+id).style.display='none';
@@ -357,7 +367,6 @@ function editDet(id){
   document.getElementById('dbs-'+id).style.display='inline-block';
   document.getElementById('dbc-'+id).style.display='inline-block';
 }
-
 function cancelDet(id){
   document.getElementById('dv-'+id).style.display='block';
   document.getElementById('de-'+id).style.display='none';
@@ -365,20 +374,54 @@ function cancelDet(id){
   document.getElementById('dbs-'+id).style.display='none';
   document.getElementById('dbc-'+id).style.display='none';
 }
-
 function saveDet(id){
   if(!db)return;
   var val=document.getElementById('de-'+id).value.trim();
   db.ref('ideas/'+id+'/details').set(val,function(err){
-    if(err)showStatus('Błąd zapisu: '+err.message,true);
+    if(err)showStatus('Błąd: '+err.message,true);
     else{toast('Szczegóły zapisane!');cancelDet(id);}
+  });
+}
+
+// IDEA edit
+function openEdit(id){
+  var ep=document.getElementById('ep-'+id);
+  if(!ep)return;
+  var idea=ideas.find(function(i){return i.id===id;});
+  if(!idea)return;
+  document.getElementById('et-'+id).value=idea.title||'';
+  document.getElementById('ec-'+id).value=idea.cat||'Nowy biznes';
+  document.getElementById('epr-'+id).value=idea.priority||'med';
+  document.getElementById('ed-'+id).value=idea.desc||'';
+  document.getElementById('edet-'+id).value=idea.details||'';
+  document.getElementById('ev-'+id).value=idea.value||'';
+  ep.classList.add('open');
+}
+function closeEdit(id){
+  var ep=document.getElementById('ep-'+id);
+  if(ep)ep.classList.remove('open');
+}
+function saveEdit(id){
+  if(!db)return;
+  var title=document.getElementById('et-'+id).value.trim();
+  if(!title){toast('Tytuł nie może być pusty!');return;}
+  var updates={
+    title:title,
+    cat:document.getElementById('ec-'+id).value,
+    priority:document.getElementById('epr-'+id).value,
+    desc:document.getElementById('ed-'+id).value.trim(),
+    details:document.getElementById('edet-'+id).value.trim(),
+    value:document.getElementById('ev-'+id).value.trim()
+  };
+  db.ref('ideas/'+id).update(updates,function(err){
+    if(err)showStatus('Błąd zapisu: '+err.message,true);
+    else{toast('Zmiany zapisane!');closeEdit(id);}
   });
 }
 
 var pL={high:'Wysoki',med:'Średni',low:'Niski'};
 var pC={high:'badge-high',med:'badge-med',low:'badge-low'};
-
-function esc(s){return s?s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'):''}
+function esc(s){return s?String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'):''}
 
 function cardHTML(idea){
   var dc=idea.author==='Małgosia'?'dot-m':'dot-g';
@@ -386,6 +429,7 @@ function cardHTML(idea){
   var hasDet=!!(idea.details&&idea.details.trim());
   var ch=comments.map(function(c){return '<div class="comment-item"><b>'+esc(c.who||'?')+':</b> '+esc(c.text)+'</div>';}).join('');
   var dvContent=hasDet?esc(idea.details):'Brak szczegółów — kliknij „Edytuj" żeby dodać plan, obliczenia, notatki...';
+
   return '<div class="card" id="card-'+idea.id+'">'+
     '<div class="card-head">'+
       '<div class="card-title">'+esc(idea.title)+'</div>'+
@@ -397,9 +441,13 @@ function cardHTML(idea){
     (idea.desc?'<div class="card-desc">'+esc(idea.desc)+'</div>':'')+
     (idea.value?'<div class="card-value"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>'+esc(idea.value)+'</div>':'')+
     '<div class="card-bottom">'+
-      '<div class="card-author"><div class="dot '+dc+'">'+idea.author[0]+'</div>'+esc(idea.author)+' · '+esc(idea.date)+'</div>'+
+      '<div class="card-author"><div class="dot '+dc+'">'+esc(idea.author[0])+'</div>'+esc(idea.author)+' · '+esc(idea.date)+'</div>'+
       '<div class="card-actions">'+
         '<button class="btn-det'+(hasDet?' has':'')+'" onclick="toggleDet(\''+idea.id+'\')">📋 '+(hasDet?'Szczegóły ✓':'Szczegóły')+'</button>'+
+        '<button class="icon-btn" onclick="openEdit(\''+idea.id+'\')" title="Edytuj pomysł">'+
+          '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>'+
+          'Edytuj'+
+        '</button>'+
         '<button class="icon-btn'+(( idea.likes||0)>0?' liked':'')+'" onclick="toggleLike(\''+idea.id+'\')">'+
           '<svg width="13" height="13" viewBox="0 0 24 24" fill="'+((idea.likes||0)>0?'currentColor':'none')+'" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'+(idea.likes||0)+
         '</button>'+
@@ -411,16 +459,41 @@ function cardHTML(idea){
         '</button>'+
       '</div>'+
     '</div>'+
+
+    // EDIT PANEL
+    '<div class="edit-panel" id="ep-'+idea.id+'">'+
+      '<div class="edit-panel-title">✏️ Edytuj pomysł</div>'+
+      '<div class="edit-grid">'+
+        '<div class="edit-fg s2"><label>Tytuł</label><input type="text" id="et-'+idea.id+'" /></div>'+
+        '<div class="edit-fg"><label>Kategoria</label>'+
+          '<select id="ec-'+idea.id+'"><option>Nowy biznes</option><option>Ulepszenie</option><option>Marketing</option><option>Oszczędności</option><option>Ekspansja</option><option>Produkt</option></select>'+
+        '</div>'+
+        '<div class="edit-fg"><label>Priorytet</label>'+
+          '<select id="epr-'+idea.id+'"><option value="high">🔴 Wysoki</option><option value="med">🟡 Średni</option><option value="low">🟢 Niski</option></select>'+
+        '</div>'+
+        '<div class="edit-fg s2"><label>Krótki opis</label><textarea id="ed-'+idea.id+'"></textarea></div>'+
+        '<div class="edit-fg s2"><label>📋 Szczegółowy opis</label><textarea class="big" id="edet-'+idea.id+'"></textarea></div>'+
+        '<div class="edit-fg s2"><label>Zysk / oszczędność</label><input type="text" id="ev-'+idea.id+'" /></div>'+
+      '</div>'+
+      '<div class="edit-btns">'+
+        '<button class="ebtn ebtn-save" onclick="saveEdit(\''+idea.id+'\')">💾 Zapisz zmiany</button>'+
+        '<button class="ebtn ebtn-cancel" onclick="closeEdit(\''+idea.id+'\')">Anuluj</button>'+
+      '</div>'+
+    '</div>'+
+
+    // DETAILS PANEL
     '<div class="det-panel" id="det-'+idea.id+'">'+
       '<div class="det-label">📋 Szczegółowy opis</div>'+
       '<div id="dv-'+idea.id+'" class="det-view'+(hasDet?'':' ph')+'">'+dvContent+'</div>'+
-      '<textarea id="de-'+idea.id+'" class="det-edit" placeholder="Pisz bez limitu — plan, kroki, obliczenia..."></textarea>'+
+      '<textarea id="de-'+idea.id+'" class="det-edit" placeholder="Pisz bez limitu..."></textarea>'+
       '<div class="det-btns">'+
         '<button class="dbtn dbtn-e" id="dbe-'+idea.id+'" onclick="editDet(\''+idea.id+'\')">✏️ Edytuj</button>'+
         '<button class="dbtn dbtn-s" id="dbs-'+idea.id+'" onclick="saveDet(\''+idea.id+'\')">💾 Zapisz</button>'+
         '<button class="dbtn dbtn-c" id="dbc-'+idea.id+'" onclick="cancelDet(\''+idea.id+'\')">Anuluj</button>'+
       '</div>'+
     '</div>'+
+
+    // COMMENTS
     '<div class="comments" id="cm-'+idea.id+'">'+
       ch+
       '<div class="comment-row">'+
@@ -432,7 +505,6 @@ function cardHTML(idea){
 }
 
 function emptyHTML(){return '<div class="empty">Brak pomysłów — dodajcie coś nowego!</div>';}
-
 var impCats=['Marketing','Oszczędności','Ekspansja','Produkt','Ulepszenie'];
 
 function render(){
@@ -448,7 +520,6 @@ function render(){
   var impf=ideas.filter(function(i){return impCats.indexOf(i.cat)>=0&&(fImp==='all'||i.cat===fImp);});
   document.getElementById('listImp').innerHTML=impf.length?impf.map(cardHTML).join(''):emptyHTML();
 }
-
 render();
 </script>
 </body>
