@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nasze pomysły biznesowe</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <style>
@@ -85,8 +86,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .btn-det{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:var(--r);border:1px solid var(--blue-border);background:var(--blue-bg);color:var(--blue-text);font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;transition:opacity .15s}
 .btn-det:hover{opacity:.75}
 .btn-det.has{background:var(--green-bg);color:var(--green-text);border-color:#a0c97a}
-
-/* EDIT PANEL */
 .edit-panel{margin-top:14px;border-top:1px solid var(--border);padding-top:14px;display:none}
 .edit-panel.open{display:block}
 .edit-panel-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:12px}
@@ -104,8 +103,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .ebtn-save:hover{opacity:.8}
 .ebtn-cancel{border:1px solid var(--border2);background:none;color:var(--text2)}
 .ebtn-cancel:hover{background:var(--surface2)}
-
-/* DETAILS PANEL */
 .det-panel{margin-top:14px;border-top:1px solid var(--border);padding-top:14px;display:none}
 .det-panel.open{display:block}
 .det-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:10px}
@@ -120,8 +117,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .dbtn-s{border:none;background:var(--text);color:#fff;display:none}
 .dbtn-s:hover{opacity:.8}
 .dbtn-c{border:1px solid var(--border2);background:none;color:var(--text2);display:none}
-
-/* COMMENTS */
 .comments{margin-top:12px;padding-top:12px;border-top:1px solid var(--border);display:none}
 .comments.open{display:block}
 .comment-item{font-size:12px;color:var(--text2);padding:4px 0;display:flex;gap:8px;line-height:1.5}
@@ -358,7 +353,6 @@ function addComment(id,inputEl){
 function toggleComments(id){var el=document.getElementById('cm-'+id);if(el)el.classList.toggle('open');}
 function toggleDet(id){var el=document.getElementById('det-'+id);if(el)el.classList.toggle('open');}
 
-// DETAILS edit
 function editDet(id){
   var idea=ideas.find(function(i){return i.id===id;});if(!idea)return;
   document.getElementById('dv-'+id).style.display='none';
@@ -383,12 +377,9 @@ function saveDet(id){
   });
 }
 
-// IDEA edit
 function openEdit(id){
-  var ep=document.getElementById('ep-'+id);
-  if(!ep)return;
-  var idea=ideas.find(function(i){return i.id===id;});
-  if(!idea)return;
+  var ep=document.getElementById('ep-'+id);if(!ep)return;
+  var idea=ideas.find(function(i){return i.id===id;});if(!idea)return;
   document.getElementById('et-'+id).value=idea.title||'';
   document.getElementById('ec-'+id).value=idea.cat||'Nowy biznes';
   document.getElementById('epr-'+id).value=idea.priority||'med';
@@ -397,17 +388,13 @@ function openEdit(id){
   document.getElementById('ev-'+id).value=idea.value||'';
   ep.classList.add('open');
 }
-function closeEdit(id){
-  var ep=document.getElementById('ep-'+id);
-  if(ep)ep.classList.remove('open');
-}
+function closeEdit(id){var ep=document.getElementById('ep-'+id);if(ep)ep.classList.remove('open');}
 function saveEdit(id){
   if(!db)return;
   var title=document.getElementById('et-'+id).value.trim();
   if(!title){toast('Tytuł nie może być pusty!');return;}
   var updates={
-    title:title,
-    cat:document.getElementById('ec-'+id).value,
+    title:title,cat:document.getElementById('ec-'+id).value,
     priority:document.getElementById('epr-'+id).value,
     desc:document.getElementById('ed-'+id).value.trim(),
     details:document.getElementById('edet-'+id).value.trim(),
@@ -429,7 +416,6 @@ function cardHTML(idea){
   var hasDet=!!(idea.details&&idea.details.trim());
   var ch=comments.map(function(c){return '<div class="comment-item"><b>'+esc(c.who||'?')+':</b> '+esc(c.text)+'</div>';}).join('');
   var dvContent=hasDet?esc(idea.details):'Brak szczegółów — kliknij „Edytuj" żeby dodać plan, obliczenia, notatki...';
-
   return '<div class="card" id="card-'+idea.id+'">'+
     '<div class="card-head">'+
       '<div class="card-title">'+esc(idea.title)+'</div>'+
@@ -445,8 +431,7 @@ function cardHTML(idea){
       '<div class="card-actions">'+
         '<button class="btn-det'+(hasDet?' has':'')+'" onclick="toggleDet(\''+idea.id+'\')">📋 '+(hasDet?'Szczegóły ✓':'Szczegóły')+'</button>'+
         '<button class="icon-btn" onclick="openEdit(\''+idea.id+'\')" title="Edytuj pomysł">'+
-          '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>'+
-          'Edytuj'+
+          '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Edytuj'+
         '</button>'+
         '<button class="icon-btn'+(( idea.likes||0)>0?' liked':'')+'" onclick="toggleLike(\''+idea.id+'\')">'+
           '<svg width="13" height="13" viewBox="0 0 24 24" fill="'+((idea.likes||0)>0?'currentColor':'none')+'" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'+(idea.likes||0)+
@@ -459,8 +444,6 @@ function cardHTML(idea){
         '</button>'+
       '</div>'+
     '</div>'+
-
-    // EDIT PANEL
     '<div class="edit-panel" id="ep-'+idea.id+'">'+
       '<div class="edit-panel-title">✏️ Edytuj pomysł</div>'+
       '<div class="edit-grid">'+
@@ -480,8 +463,6 @@ function cardHTML(idea){
         '<button class="ebtn ebtn-cancel" onclick="closeEdit(\''+idea.id+'\')">Anuluj</button>'+
       '</div>'+
     '</div>'+
-
-    // DETAILS PANEL
     '<div class="det-panel" id="det-'+idea.id+'">'+
       '<div class="det-label">📋 Szczegółowy opis</div>'+
       '<div id="dv-'+idea.id+'" class="det-view'+(hasDet?'':' ph')+'">'+dvContent+'</div>'+
@@ -492,8 +473,6 @@ function cardHTML(idea){
         '<button class="dbtn dbtn-c" id="dbc-'+idea.id+'" onclick="cancelDet(\''+idea.id+'\')">Anuluj</button>'+
       '</div>'+
     '</div>'+
-
-    // COMMENTS
     '<div class="comments" id="cm-'+idea.id+'">'+
       ch+
       '<div class="comment-row">'+
