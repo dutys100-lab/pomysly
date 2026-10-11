@@ -188,7 +188,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </button>
     <div class="login-note">Tylko Ty i Grześ macie dostęp do tej aplikacji.</div>
     <br>
-    <button class="btn-reset" onclick="resetConfig()">Zmień dane Firebase</button>
+    
   </div>
 </div>
 
@@ -285,9 +285,15 @@ function showErr(msg){
 }
 
 // Sprawdź czy mamy zapisane dane
-var savedCfg=null;
-try{savedCfg=JSON.parse(localStorage.getItem('fb-cfg')||'null')}catch(e){}
-if(savedCfg){initFB(savedCfg);}else{show('screenSetup');}
+// Dane Firebase wpisane na stałe — Pomysły zawsze łączą się ze SWOJĄ bazą
+// (nie korzystają ze wspólnego schowka przeglądarki, więc inne aplikacje nie mogą ich podmienić)
+var POMYSLY_CFG={
+  apiKey:'AIzaSyDHRUO3h0JRVbW43SBYyRTsgumA2J5pYI4',
+  authDomain:'pomysly-biznesowe.firebaseapp.com',
+  databaseURL:'https://pomysly-biznesowe-default-rtdb.europe-west1.firebasedatabase.app',
+  projectId:'pomysly-biznesowe'
+};
+initFB(POMYSLY_CFG);
 
 function saveConfig(){
   var url=document.getElementById('dbUrl').value.trim();
@@ -295,14 +301,10 @@ function saveConfig(){
   var pid=document.getElementById('projId').value.trim();
   if(!url||!key||!pid){showErr('Wypełnij wszystkie trzy pola!');return;}
   var c={databaseURL:url,apiKey:key,projectId:pid,authDomain:pid+'.firebaseapp.com'};
-  localStorage.setItem('fb-cfg',JSON.stringify(c));
   initFB(c);
 }
 
-function resetConfig(){
-  localStorage.removeItem('fb-cfg');
-  show('screenSetup');
-}
+function resetConfig(){show('screenSetup');}
 
 function initFB(c){
   try{
